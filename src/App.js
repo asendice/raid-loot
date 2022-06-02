@@ -1,23 +1,19 @@
-import logo from './logo.svg';
 import './App.css';
+import CreateRaid from "./components/CreateRaid";
+import RaidsList from "./components/RaidsList";
+import { useState } from "react";
 
 function App() {
+  const [raids, setRaids] = useState([]);
+
+  function updateRaids(raid) {
+    setRaids(raids => [...raids, raid]);
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <CreateRaid updateRaids={updateRaids}/>
+      <RaidsList items={raids}/>
     </div>
   );
 }
